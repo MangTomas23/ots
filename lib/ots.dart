@@ -177,7 +177,7 @@ Future<void> showLoader({bool isModal = false, Color modalColor}) async {
               children: <Widget>[
                 ModalBarrier(
                   color: modalColor ?? _modalBarrierDefaultColor,
-                  dismissable: false,
+                  dismissible: false,
                 ),
                 _child
               ],
