@@ -1,7 +1,7 @@
 library ots;
 
 import 'dart:io' show InternetAddress, Platform, SocketException;
-
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ bool _showDebugLogs = false;
 
 Widget _loadingIndicator;
 
-class OTS extends StatelessWidget {
+class OTS extends StatefulWidget {
   final Widget child;
   final Widget loader;
   final bool showNetworkUpdates;
@@ -60,16 +60,44 @@ class OTS extends StatelessWidget {
       : super(key: key);
 
   @override
+  _OTSState createState() => _OTSState();
+}
+
+class _OTSState extends State<OTS> {
+  @override
+  void initState() {
+    super.initState();
+
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    print('BACK BUTTON INTERCEPTED!');
+
+    if (_loaderShown) {
+      return true;
+    }
+
+    return false;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    _loadingIndicator = loader;
-    isDarkTheme = darkTheme;
-    _persistNoInternetToast = persistNoInternetNotification;
-    if (showNetworkUpdates) {
+    _loadingIndicator = widget.loader;
+    isDarkTheme = widget.darkTheme;
+    _persistNoInternetToast = widget.persistNoInternetNotification;
+    if (widget.showNetworkUpdates) {
       _listenToNetworkChanges();
     }
     return SizedBox(
       key: _tKey,
-      child: child,
+      child: widget.child,
     );
   }
 }
