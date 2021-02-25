@@ -190,7 +190,7 @@ Future<void> _hideNetworkStateWidget() async {
 }
 
 /// To handle a loader for the application
-Future<void> showLoader({bool isModal = false, Color modalColor}) async {
+Future<void> showLoader({bool isModal = true, Color modalColor}) async {
   try {
     _printLog('''Showing loader as Overlay''');
     final _child = Center(
