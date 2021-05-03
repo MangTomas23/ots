@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  connectivity: ^0.4.9+2
+  connectivity: ^3.0.3
   back_button_interceptor: ^4.4.0
 
 
