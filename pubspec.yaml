@@ -5,14 +5,14 @@ author: Fayaz
 homepage: https://github.com/fayaz07/ots
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  connectivity: ^0.4.9+2
-  back_button_interceptor: ^4.4.0
+  connectivity: ^3.0.3
+  back_button_interceptor: ^5.0.0
 
 
 dev_dependencies:
